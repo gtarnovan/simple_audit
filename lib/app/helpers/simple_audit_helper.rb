@@ -11,7 +11,13 @@ module SimpleAuditHelper
         content_tag(:div, l(audit.created_at), :class => "timestamp") + 
         content_tag(:div, :class => 'changes') do
           if older_audit.present?
-            audit.delta(older_audit).collect {|k, v| "\n#{Booking.human_attribute_name(k)}: #{v.last}" }
+            audit.delta(older_audit).collect do |k, v| 
+              "\n" + 
+              Booking.human_attribute_name(k) + 
+              ":" +
+              content_tag(:span, v.last, :class => 'current') +
+              content_tag(:span, v.first, :class => 'previous') 
+            end
           else
             audit.changes.reject{|k, v| v.blank?}.collect {|k, v| "\n#{Booking.human_attribute_name(k)}: #{v}"}
           end    
