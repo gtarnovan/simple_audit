@@ -1,8 +1,10 @@
 # SimpleAudit
 
-
-Simple auditing solution for ActiveRecord models. 
-
+Simple auditing solution for ActiveRecord models. Provides an easy way of creating audit logs for complex model associations.
+Instead of storing audits for all data aggregated by the audited model, you can specify a serializable representation of the model.
+    
+  * a helper method is provided to easily display the audit log
+  * the Audit object provides a #delta method which computs the differences between two audits
 
 # Installation & Configuration
 
@@ -48,7 +50,7 @@ Create a migration with this content:
 
 # Usage
 
-Audit ActiveRecord models:
+Audit ActiveRecord models. Somewhere in your (backend) views show the audit logs.
     
     # in your model
     # app/models/booking.rb
@@ -64,6 +66,15 @@ Audit ActiveRecord models:
     ...
     <%= render_audits(@booking.audits) %>
     ...     
+
+# Assumptions and limitations
+
+  * Your user model is called User and the current user User.current
+    See [sentient_user](http://github.com/bokmann/sentient_user) for more information.
+
+  * You have to write your own tests (fow now)
+  
+
     
 ## Customize auditing
 
@@ -87,6 +98,11 @@ You can customize the data which is saved by overriding the audit_changes method
         ...
     end
     
+You can also customize the attribute of the User model which will be stored in the audit.
+
+    # default is :name
+    simple_audit :username_method => :email
+    
 ## Rendering audit 
 
 A helper method for displaying a list of audits is provided. It will render a decorated list of the provided audits;
@@ -95,4 +111,4 @@ only the differences between revisions will be shown, thus making the audit info
 ![Screenshot of helper result](/screenshot.png)
     
 
-Copyright (c) 2010 [Gabriel Tarnovan, Cubus Arts](http://cubus.ro "Cubus Arts"), released under the MIT license
+Copyright (c) 2010 [Gabriel Târnovan, Cubus Arts](http://cubus.ro "Cubus Arts"), released under the MIT license

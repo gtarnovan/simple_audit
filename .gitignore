@@ -1,0 +1,8 @@
+# jeweler generated
+pkg
+
+# tmp directories used during testing
+test/tmp
+test/jeweler/version_tmp
+test/version_tmp
+tmp

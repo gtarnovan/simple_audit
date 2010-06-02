@@ -21,3 +21,33 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+#
+# Gemify
+#
+begin
+  require 'jeweler'
+  
+  gem_files = FileList[
+    '[a-zA-Z]*',
+    'lib/**/*',
+    'rails/**/*',
+    'tasks/**/*',
+    'test/**/*'
+  ]
+  
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "simple_audit"
+    gemspec.summary = "Simple auditing solution for ActiveRecord models"
+    #gemspec.description = ""
+    gemspec.email = "gabriel.tarnovan@cubus.ro"
+    gemspec.homepage = "http://github.com/gtarnovan/simple_audit"
+    gemspec.authors = ["Gabriel Tarnovan"]
+    gemspec.version = "0.0.1"
+    gemspec.files = gem_files.to_a
+    
+    gemspec.rubyforge_project = 'simple_audit'
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: gem install jeweler"
+end
