@@ -108,7 +108,7 @@ You can also customize the attribute of the User model which will be stored in t
 A helper method for displaying a list of audits is provided. It will render a decorated list of the provided audits;
 only the differences between revisions will be shown, thus making the audit information easily readable.
 
-![Screenshot of helper result](/screenshot.png)
+![Screenshot of helper result](http://github.com/gtarnovan/simple_audit/raw/master/screenshot.png)
     
 
 Copyright (c) 2010 [Gabriel Târnovan, Cubus Arts](http://cubus.ro "Cubus Arts"), released under the MIT license
