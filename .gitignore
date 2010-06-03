@@ -6,3 +6,6 @@ test/tmp
 test/jeweler/version_tmp
 test/version_tmp
 tmp
+
+# netbeans
+nbproject
