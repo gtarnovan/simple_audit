@@ -5,23 +5,27 @@
 
 Gem::Specification.new do |s|
   s.name = %q{simple_audit}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Gabriel Tarnovan"]
-  s.date = %q{2010-06-02}
+  s.date = %q{2010-06-04}
   s.email = %q{gabriel.tarnovan@cubus.ro}
   s.extra_rdoc_files = [
-    "README.markdown"
+    "LICENSE",
+     "README.markdown",
+     "TODO"
   ]
   s.files = [
-    "MIT-LICENSE",
+    "LICENSE",
      "README.markdown",
      "Rakefile",
+     "TODO",
      "lib/app/helpers/simple_audit_helper.rb",
      "lib/app/models/audit.rb",
      "lib/simple_audit.rb",
      "rails/init.rb",
+     "screenshot.png",
      "simple_audit.gemspec",
      "tasks/simple_audit_tasks.rake",
      "test/simple_audit_test.rb",
