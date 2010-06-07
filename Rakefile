@@ -43,7 +43,7 @@ begin
     gemspec.email = "gabriel.tarnovan@cubus.ro"
     gemspec.homepage = "http://github.com/gtarnovan/simple_audit"
     gemspec.authors = ["Gabriel Tarnovan"]
-    gemspec.version = "0.0.2"
+    gemspec.version = "0.0.3"
     gemspec.files = gem_files.to_a
     
     gemspec.rubyforge_project = 'simple_audit'
