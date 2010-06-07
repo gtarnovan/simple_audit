@@ -14,13 +14,13 @@ module SimpleAuditHelper
           if older_audit.present?
             audit.delta(older_audit).collect do |k, v| 
               "\n" + 
-              Booking.human_attribute_name(k) + 
+              audited_model.class.human_attribute_name(k) +
               ":" +
               content_tag(:span, v.last, :class => 'current') +
               content_tag(:span, v.first, :class => 'previous') 
             end
           else
-            audit.changes.reject{|k, v| v.blank?}.collect {|k, v| "\n#{Booking.human_attribute_name(k)}: #{v}"}
+            audit.changes.reject{|k, v| v.blank?}.collect {|k, v| "\n#{audited_model.class.human_attribute_name(k)}: #{v}"}
           end    
         end        
       end
