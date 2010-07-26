@@ -39,10 +39,9 @@ module Cubus
     module InstanceMethods
       def audit_changes
         self.attributes
-      end
+      end      
     end
   
   end
 
 end
-
