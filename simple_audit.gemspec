@@ -5,41 +5,54 @@
 
 Gem::Specification.new do |s|
   s.name = %q{simple_audit}
-  s.version = "0.0.3"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Gabriel Tarnovan"]
-  s.date = %q{2010-06-07}
-  s.email = %q{gabriel.tarnovan@cubus.ro}
+  s.authors = ["Gabriel Tarnovan", "Mihai Tarnovan"]
+  s.date = %q{2010-09-29}
+  s.description = %q{      Provides a straightforward way for auditing changes on active record models, especially for composite entities. 
+      Also provides helper methods for easily rendering an audit trail in Ruby on Rails views.
+}
+  s.email = ["gabriel.tarnovan@cubus.ro", "mihai.tarnovan@cubus.ro"]
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.markdown",
      "TODO"
   ]
   s.files = [
-    "LICENSE",
-     "README.markdown",
+    "CHANGELOG",
+     "LICENSE",
      "Rakefile",
      "TODO",
-     "lib/app/helpers/simple_audit_helper.rb",
-     "lib/app/models/audit.rb",
+     "generators/simple_audit_migration/USAGE",
+     "generators/simple_audit_migration/simple_audit_migration_generator.rb",
+     "generators/simple_audit_migration/templates/migration.rb",
+     "lib/generators/simple_audit/migration/migration_generator.rb",
+     "lib/generators/simple_audit/migration/templates/active_record/migration.rb",
      "lib/simple_audit.rb",
+     "lib/simple_audit/audit.rb",
+     "lib/simple_audit/helper.rb",
+     "lib/simple_audit/simple_audit.rb",
      "rails/init.rb",
      "screenshot.png",
      "simple_audit.gemspec",
-     "tasks/simple_audit_tasks.rake",
-     "test/simple_audit_test.rb",
-     "test/test_helper.rb"
+     "test/fixtures/addresses.yml",
+     "test/fixtures/people.yml",
+     "test/test_helper.rb",
+     "test/unit/simple_audit_test.rb"
   ]
   s.homepage = %q{http://github.com/gtarnovan/simple_audit}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{simple_audit}
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Simple auditing solution for ActiveRecord models}
   s.test_files = [
-    "test/test_helper.rb",
-     "test/simple_audit_test.rb"
+    "test/fixtures",
+     "test/fixtures/addresses.yml",
+     "test/fixtures/people.yml",
+     "test/test_helper.rb",
+     "test/unit",
+     "test/unit/simple_audit_test.rb"
   ]
 
   if s.respond_to? :specification_version then

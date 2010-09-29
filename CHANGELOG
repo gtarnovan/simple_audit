@@ -1,0 +1,12 @@
+# Version 0.1.0 (Sept 29, 2010)
+* Rails 3 compatibility
+* minor API changes break backwards compatibility
+* documented code
+ 
+# Version 0.0.3 (June 6, 2010)
+* unit tests
+
+# Version 0.0.2 (June 3, 2010)
+* added migration generator
+
+# Version 0.0.1 (June 1, 2010)

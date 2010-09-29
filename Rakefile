@@ -27,24 +27,27 @@ end
 #
 begin
   require 'jeweler'
-  
+  test_files = FileList['test/**/*'].to_a
   gem_files = FileList[
     '[a-zA-Z]*',
     'lib/**/*',
+    'generators/**/*',
     'rails/**/*',
-    'tasks/**/*',
-    'test/**/*'
-  ]
+  ].to_a + test_files
   
   Jeweler::Tasks.new do |gemspec|
     gemspec.name = "simple_audit"
     gemspec.summary = "Simple auditing solution for ActiveRecord models"
-    #gemspec.description = ""
-    gemspec.email = "gabriel.tarnovan@cubus.ro"
+    gemspec.description = <<-EOD 
+      Provides a straightforward way for auditing changes on active record models, especially for composite entities. 
+      Also provides helper methods for easily rendering an audit trail in Ruby on Rails views.
+    EOD
+    gemspec.email = ["gabriel.tarnovan@cubus.ro", "mihai.tarnovan@cubus.ro"]
     gemspec.homepage = "http://github.com/gtarnovan/simple_audit"
-    gemspec.authors = ["Gabriel Tarnovan"]
-    gemspec.version = "0.0.3"
-    gemspec.files = gem_files.to_a
+    gemspec.authors = ["Gabriel Tarnovan", "Mihai Tarnovan"]
+    gemspec.version = "0.1.0"
+    gemspec.files = gem_files
+    gemspec.test_files = test_files
     
     gemspec.rubyforge_project = 'simple_audit'
   end

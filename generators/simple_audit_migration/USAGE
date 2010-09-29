@@ -1,8 +1,2 @@
 Description:
-	The simple audits migration generator creates a migration to add the audits table.
-
-Example:
-    ./script/generate simple_audit_migration create_audits
-
-    This will create the migration in db/migrate/
-    Run "rake db:migrate" to update your database.
+	Generates migration for Audit model

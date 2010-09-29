@@ -1,3 +1,12 @@
-* migration generator
-* customizable method for getting the current user
-* tests
+# Architecture
+* support for ActiveModel
+* ORM agnosticism
+
+# Funtionality
+* provide some sort of UUID for audited models that identify these independently from the database provided ID.
+  in case of deletion and creation of a new entity with the same UUID, the audit trails of both entities could be bound.
+  e.g. for an invoice the UUID could be its number/series combination. when someone deletes an invoice and creates a new one
+  with the same UUID, the audit trail of both instances should be bound, such that the deletion event is visible during the audit (i.e. in the view helper)
+
+# Minor
+* provide a sample css file for audit trail rendering

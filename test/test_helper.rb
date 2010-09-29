@@ -9,8 +9,7 @@ require 'ruby-debug'
 require 'ostruct'
 
 require File.join(File.dirname(__FILE__), "..", "generators", "simple_audit_migration", "templates", "migration.rb")
-require File.join(File.dirname(__FILE__), "..", "lib", "app", "models", "audit")
-require File.join(File.dirname(__FILE__), "..", "rails", "init")
+require File.join(File.dirname(__FILE__), "..", "lib", "simple_audit")
 
 ActiveRecord::Base.establish_connection({
   :adapter  => 'sqlite3',
@@ -27,6 +26,7 @@ ActiveRecord::Migration.suppress_messages {
       create_table "addresses", :force => true do |t|
         t.column "line_1", :text
         t.column "zip", :text
+        t.column "type", :text
         t.references :person
       end
       create_table "users", :force => true do |t|
@@ -34,26 +34,43 @@ ActiveRecord::Migration.suppress_messages {
       end
     end
   end
-  CreateAudits.migrate(:up)  
+  SimpleAuditMigration.migrate(:up)  
 }
 
 class Person < ActiveRecord::Base
   has_one :address
-  simple_audit
-  def audit_changes
+  simple_audit do |record|
     {
-      :name => self.name,
-      :address => { :line_1 => self.address.line_1, :zip => self.address.zip }
+      :name => record.name,
+      :address => { :line_1 => record.address.line_1, :zip => record.address.zip }
     }
   end
 end
 
 class Address < ActiveRecord::Base
   belongs_to :person
+  simple_audit :username_method => :full_name
+end
+
+class HomeAddress < Address
+  simple_audit :username_method => :short_name 
 end
 
 class User < ActiveRecord::Base
   def self.current; User.first ; end
+  
+  def name
+    "name"
+  end
+  
+  def full_name
+    "full_name"
+  end
+  
+  def short_name
+    "short_name"
+  end
+  
 end
 
 User.create(:name => "some user")
