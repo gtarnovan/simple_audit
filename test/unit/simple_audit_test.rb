@@ -62,5 +62,5 @@ class SimpleAuditTest < ActiveSupport::TestCase
     address = Address.create
     assert_equal User.new.full_name, address.audits.last.username
   end
- 
+   
 end
