@@ -4,7 +4,7 @@ Simple auditing solution for ActiveRecord models. Provides an easy way of creati
 Instead of storing audits for all data aggregated by the audited model, you can specify a serializable representation of the model.
     
   * a helper method is provided to easily display the audit log
-  * the Audit object provides a #delta method which computs the differences between two audits
+  * the Audit object provides a #delta method which computes the differences between two audits
 
 In a nutshell:
 
@@ -28,7 +28,7 @@ simple_audit is intended as a straightforward auditing solution for complex mode
 In a normalized data structure (which is usually the case when using SQL), a core business model will aggregate data from several associated entities.
 More often than not in such cases, only the core model is of interest from an auditing point of view. 
 
-So instead of auditing every entity sepparately, with simple_audit you decide for each audited model what data needs to be audited. 
+So instead of auditing every entity separately, with simple_audit you decide for each audited model what data needs to be audited. 
 This data will be serialized on every model update and the available helper methods will render a clear audit trail.
 
 ![Screenshot of helper result](http://github.com/gtarnovan/simple_audit/raw/master/screenshot.png)
