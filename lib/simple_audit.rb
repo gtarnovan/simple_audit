@@ -6,7 +6,7 @@ require 'simple_audit/audit'
 require 'simple_audit/helper'
 
 if defined?(ActiveRecord::Base)
-  ActiveRecord::Base.send :include, SimpleAudit
+  ActiveRecord::Base.send :include, SimpleAudit::Model
 end
 
 if defined?(ActionView::Base)

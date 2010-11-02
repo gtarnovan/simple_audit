@@ -17,7 +17,7 @@ module SimpleAudit #:nodoc:
     
       return self.change_log if other_audit.nil?
     
-      returning({}) do |d|
+      {}.tap do |d|
         
         # first for keys present only in this audit
         (self.change_log.keys - other_audit.change_log.keys).each do |k|
