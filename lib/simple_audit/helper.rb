@@ -14,7 +14,7 @@ module SimpleAudit #:nodoc:
           content_tag(:div, audit.username, :class => "user") + 
           content_tag(:div, l(audit.created_at), :class => "timestamp") + 
           content_tag(:div, :class => 'changes') do
-            if older_audit.present?
+            changes = if older_audit.present?
               audit.delta(older_audit).collect do |k, v| 
                 "\n" + 
                 audited_model.class.human_attribute_name(k) +
@@ -24,7 +24,8 @@ module SimpleAudit #:nodoc:
               end
             else
               audit.change_log.reject{|k, v| v.blank?}.collect {|k, v| "\n#{audited_model.class.human_attribute_name(k)}: #{v}"}
-            end    
+            end
+            changes.join    
           end        
         end
       end
