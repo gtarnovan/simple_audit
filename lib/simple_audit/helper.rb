@@ -20,16 +20,16 @@ module SimpleAudit #:nodoc:
                 audited_model.class.human_attribute_name(k) +
                 ":" +
                 content_tag(:span, v.last, :class => 'current') +
-                content_tag(:span, v.first, :class => 'previous') 
+                content_tag(:span, v.first, :class => 'previous')
               end
             else
               audit.change_log.reject{|k, v| v.blank?}.collect {|k, v| "\n#{audited_model.class.human_attribute_name(k)}: #{v}"}
             end
-            changes.join    
+            raw changes.join
           end        
         end
       end
-      res
+      raw res
     end 
     
   end
