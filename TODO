@@ -3,6 +3,8 @@
 * ORM agnosticism
 
 # Functionality
+* configure object used as current user
+* fallback to :to_s for username_method
 * provide some sort of UUID for audited models that identify these independently from the database provided ID.
   in case of deletion and creation of a new entity with the same UUID, the audit trails of both entities could be bound.
   e.g. for an invoice the UUID could be its number/series combination. when someone deletes an invoice and creates a new one
