@@ -49,7 +49,19 @@ module SimpleAudit
           write_inheritable_attribute :username_method, (options[:username_method] || :name).to_sym
           class_inheritable_reader :username_method
 
-          audit_changes_proc = block_given? ? block.to_proc : Proc.new {|record| record.attributes}
+          attributes_and_associations = proc do |record|
+            changes = record.attributes
+            record.class.reflect_on_all_associations.each do |assoc|
+              next if assoc.name == :audits
+              if assoc.collection?
+                changes[assoc.name] = record.send(assoc.name).collect(&:to_s)
+              else
+                changes[assoc.name] = record.send(assoc.name).to_s
+              end
+            end
+            changes
+          end
+          audit_changes_proc = block_given? ? block.to_proc : attributes_and_associations
           write_inheritable_attribute :audit_changes, audit_changes_proc
           class_inheritable_reader :audit_changes
 

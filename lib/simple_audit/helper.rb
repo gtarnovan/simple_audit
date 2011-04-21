@@ -15,7 +15,8 @@ module SimpleAudit #:nodoc:
           content_tag(:div, l(audit.created_at), :class => "timestamp") + 
           content_tag(:div, :class => 'changes') do
             changes = if older_audit.present?
-              audit.delta(older_audit).collect do |k, v| 
+              audit.delta(older_audit).sort{|x,y| audited_model.class.human_attribute_name(x.first) <=> audited_model.class.human_attribute_name(y.first)}.collect do |k, v|                
+                next if k.to_s == 'created_at' || k.to_s == 'updated_at'
                 "\n" + 
                 audited_model.class.human_attribute_name(k) +
                 ":" +
@@ -23,7 +24,7 @@ module SimpleAudit #:nodoc:
                 content_tag(:span, v.first, :class => 'previous')
               end
             else
-              audit.change_log.reject{|k, v| v.blank?}.collect {|k, v| "\n#{audited_model.class.human_attribute_name(k)}: #{v}"}
+              audit.change_log.sort{|x,y| audited_model.class.human_attribute_name(x.first) <=> audited_model.class.human_attribute_name(y.first)}.reject{|k, v| v.blank?}.collect {|k, v| "\n#{audited_model.class.human_attribute_name(k)}: #{v}"}
             end
             raw changes.join
           end        
