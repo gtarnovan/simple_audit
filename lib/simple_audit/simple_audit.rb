@@ -51,13 +51,8 @@ module SimpleAudit
 
           attributes_and_associations = proc do |record|
             changes = record.attributes
-            record.class.reflect_on_all_associations.each do |assoc|
-              next if assoc.name == :audits
-              if assoc.collection?
-                changes[assoc.name] = record.send(assoc.name).collect(&:to_s)
-              else
-                changes[assoc.name] = record.send(assoc.name).to_s
-              end
+            record.class.reflect_on_all_associations(:belongs_to).each do |assoc|
+              changes[assoc.name] = record.send(assoc.name).to_s
             end
             changes
           end
