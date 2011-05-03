@@ -1,3 +1,9 @@
+# Version 0.2.0 (May 3, 2011)
+* audit belongs_to associations
+* fixed html safety of helper
+
+# Version 0.1.1 (?)
+
 # Version 0.1.0 (Sept 29, 2010)
 * Rails 3 compatibility
 * minor API changes break backwards compatibility
