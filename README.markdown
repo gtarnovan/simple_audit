@@ -122,7 +122,7 @@ Audit ActiveRecord models. Somewhere in your (backend) views show the audit logs
     
 ## Customize auditing
 
-By default after each save, all model's attributes are saved in the audits table.
+By default after each save, all model's attributes and `belongs_to` associations (their `id` and `to_s` on these) are saved in the audits table.
 You can customize the data which is saved by supplying a block which will return all relevant data for the audited model.
 
     # app/models/booking.rb

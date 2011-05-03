@@ -20,7 +20,7 @@ module SimpleAudit
       #
       # * <tt>username_method => symbol</tt> - Call this method on the current user to get the name
       #
-      # With no block, all the attributes of the audited model will be logged.
+      # With no block, all the attributes and <tt>belongs_to</tt> associations (id and to_s) of the audited model will be logged.
       #
       #    class Booking
       #      # this is equivalent to passing no block
