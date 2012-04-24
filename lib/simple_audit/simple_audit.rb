@@ -46,8 +46,8 @@ module SimpleAudit
       def simple_audit(options = {}, &block)
         class_eval do
 
-          write_inheritable_attribute :username_method, (options[:username_method] || :name).to_sym
-          class_inheritable_reader :username_method
+          class_attribute :username_method
+          self.username_method = (options[:username_method] || :name).to_sym
 
           attributes_and_associations = proc do |record|
             changes = record.attributes
@@ -57,8 +57,8 @@ module SimpleAudit
             changes
           end
           audit_changes_proc = block_given? ? block.to_proc : attributes_and_associations
-          write_inheritable_attribute :audit_changes, audit_changes_proc
-          class_inheritable_reader :audit_changes
+          class_attribute :audit_changes
+          self.audit_changes = audit_changes_proc
 
           has_many :audits, :as => :auditable, :class_name => '::SimpleAudit::Audit'
 
